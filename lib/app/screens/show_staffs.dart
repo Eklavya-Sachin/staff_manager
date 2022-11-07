@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:staff_manager/app/screens/staff_details.dart';
 import '../widgets/circular_profile_image.dart';
 
 class ShowStaffs extends StatelessWidget {
@@ -24,7 +25,13 @@ class ShowStaffs extends StatelessWidget {
           itemCount: 10,
           itemBuilder: (context, index) {
             return ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => StaffDetails(),
+                  ),
+                );
+              },
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 30,
                 vertical: 15,

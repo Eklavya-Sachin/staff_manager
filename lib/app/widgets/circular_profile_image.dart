@@ -40,11 +40,11 @@ class CircularProfileImage extends StatelessWidget {
           errorBuilder: (_, __, ___) => Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.grey.shade100,
+                color: Colors.grey.shade500,
               ),
               shape: BoxShape.circle,
             ),
-            padding: EdgeInsets.all(1.5),
+            padding: const EdgeInsets.all(1.5),
             child: Icon(
               Icons.person_sharp,
               size: imageSize - 5,
