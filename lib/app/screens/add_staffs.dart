@@ -67,206 +67,211 @@ class _AddStaffsState extends State<AddStaffs> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        title: const Text(
-          'Staff Manager',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          title: const Text(
+            'Staff Manager',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+            ),
           ),
+          backgroundColor: Colors.pink.shade400,
         ),
-        backgroundColor: Colors.pink.shade400,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        children: [
-          const SizedBox(height: 20),
-          const Center(
-            child: Text(
-              'HELLO THERE!',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
-          const Center(
-            child: Text(
-              "Put your details Here!",
-              style: TextStyle(
-                fontSize: 20,
-              ),
-            ),
-          ),
-          const SizedBox(height: 30),
-          Center(
-            child: Stack(
-              children: [
-                GestureDetector(
-                  onTap: pickImage,
-                  child: Container(
-                    width: 160,
-                    height: 160,
-                    decoration: BoxDecoration(
-                      border: Border.all(width: 4, color: Colors.pink.shade300),
-                      boxShadow: [
-                        BoxShadow(
-                          spreadRadius: 2,
-                          blurRadius: 10,
-                          color: Colors.black.withOpacity(0.1),
-                        ),
-                      ],
-                      shape: BoxShape.circle,
-                    ),
-                    child: _selectedImage != null
-                        ? ClipOval(
-                            child: Image.file(
-                              _selectedImage!,
-                              height: 160,
-                              width: 160,
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                        : const Center(
-                            child: Text(
-                              'Select an Image',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                  ),
+        body: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          children: [
+            const SizedBox(height: 20),
+            const Center(
+              child: Text(
+                'HELLO THERE!',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w500,
                 ),
-                Positioned(
-                  bottom: 8,
-                  right: 3,
-                  top: 100,
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: 3,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Center(
+              child: Text(
+                "Put your details Here!",
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            Center(
+              child: Stack(
+                children: [
+                  GestureDetector(
+                    onTap: pickImage,
+                    child: Container(
+                      width: 160,
+                      height: 160,
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(width: 4, color: Colors.pink.shade300),
+                        boxShadow: [
+                          BoxShadow(
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.1),
+                          ),
+                        ],
+                        shape: BoxShape.circle,
+                      ),
+                      child: _selectedImage != null
+                          ? ClipOval(
+                              child: Image.file(
+                                _selectedImage!,
+                                height: 160,
+                                width: 160,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : const Center(
+                              child: Text(
+                                'Select an Image',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 8,
+                    right: 3,
+                    top: 100,
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: 3,
+                          color: Colors.white,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.image_rounded,
                         color: Colors.white,
                       ),
                     ),
-                    child: const Icon(
-                      Icons.image_rounded,
-                      color: Colors.white,
-                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 30),
-          Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                CustomTextField(
-                  controller: _nameController,
-                  hintText: 'Enter Your Name.',
-                  keyboardType: TextInputType.name,
-                  validator: (name) {
-                    if (name!.isEmpty) {
-                      return 'This field is Required!';
-                    } else if (name.length < 4) {
-                      return 'Name should be 4 character long!';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                const SizedBox(height: 20),
-                CustomTextField(
-                  controller: _ageController,
-                  hintText: 'Enter Your Age.',
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value!.isEmpty || value.length < 2) {
-                      return 'This field is Required!';
-                    } else if (value.length > 2) {
-                      return 'Enter your real age!';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                const SizedBox(height: 20),
-                CustomTextField(
-                  controller: _phoneNumberController,
-                  hintText: 'Enter Your Phone Number.',
-                  keyboardType: TextInputType.phone,
-                  validator: (value) {
-                    if (value!.isEmpty || value.length < 10) {
-                      return 'This field is Required!';
-                    } else if (value.length > 10) {
-                      return 'Phone number must have 10 digits!';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.black),
+            const SizedBox(height: 25),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  CustomTextField(
+                    controller: _nameController,
+                    hintText: 'Enter Your Name.',
+                    keyboardType: TextInputType.name,
+                    validator: (name) {
+                      if (name!.isEmpty) {
+                        return 'This field is Required!';
+                      } else if (name.length < 4) {
+                        return 'Name should be 4 character long!';
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButton(
-                      hint: const Text('Select Department'),
-                      focusColor: Colors.blue,
-                      enableFeedback: true,
-                      icon: const Icon(Icons.arrow_downward),
-                      iconSize: 25,
-                      elevation: 0,
-                      isExpanded: true,
-                      dropdownColor: Colors.white.withOpacity(.9),
-                      items: _departments.map(
-                        (String item) {
-                          return DropdownMenuItem<String>(
-                            value: item,
-                            child: Text(
-                              item,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
+                  const SizedBox(height: 15),
+                  CustomTextField(
+                    controller: _ageController,
+                    hintText: 'Enter Your Age.',
+                    keyboardType: TextInputType.number,
+                    validator: (value) {
+                      if (value!.isEmpty || value.length < 2) {
+                        return 'This field is Required!';
+                      } else if (value.length > 2) {
+                        return 'Enter your real age!';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 15),
+                  CustomTextField(
+                    controller: _phoneNumberController,
+                    hintText: 'Enter Your Phone Number.',
+                    keyboardType: TextInputType.phone,
+                    validator: (value) {
+                      if (value!.isEmpty || value.length < 10) {
+                        return 'This field is Required!';
+                      } else if (value.length > 10) {
+                        return 'Phone number must have 10 digits!';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 15),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: Colors.black38),
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton(
+                        hint: const Text('Select Department'),
+                        focusColor: Colors.blue,
+                        
+                        enableFeedback: true,
+                        icon: const Icon(Icons.arrow_downward),
+                        iconSize: 25,
+                        elevation: 0,
+                        isExpanded: true,
+                        dropdownColor: Colors.white.withOpacity(.9),
+                        items: _departments.map(
+                          (String item) {
+                            return DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                            ),
+                            );
+                          },
+                        ).toList(),
+                        onChanged: (value) {
+                          setState(
+                            () {
+                              _staffDepartment = value;
+                            },
                           );
                         },
-                      ).toList(),
-                      onChanged: (value) {
-                        setState(
-                          () {
-                            _staffDepartment = value;
-                          },
-                        );
-                      },
-                      value: _staffDepartment,
+                        value: _staffDepartment,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  height: 60,
-                  child: GradientButton(
-                    buttonText: 'Submit',
-                    onPressed: onSubmit,
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    height: 60,
+                    child: GradientButton(
+                      buttonText: 'Submit',
+                      onPressed: onSubmit,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
-          )
-        ],
+                  const SizedBox(height: 20),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

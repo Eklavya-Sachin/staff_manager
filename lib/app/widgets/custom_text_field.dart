@@ -23,8 +23,13 @@ class CustomTextField extends StatelessWidget {
       cursorColor: Colors.black,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
-        enabledBorder: const OutlineInputBorder(),
-        focusedBorder: const OutlineInputBorder(),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.pink.shade400),
+        ),
+        errorStyle: TextStyle(color: Colors.pink.shade400),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.pink.shade400),
+        ),
         isDense: true,
         hintText: hintText,
       ),

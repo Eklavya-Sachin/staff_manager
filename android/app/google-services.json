@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "195135314034",
+    "project_id": "staff-manager-245ab",
+    "storage_bucket": "staff-manager-245ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:195135314034:android:f0f5a9331749df35c5caeb",
+        "android_client_info": {
+          "package_name": "com.staff.manager.staff_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "195135314034-ieltp0tq73aafj32igihclks6n6b9r83.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBVmHWfTkIgiWJm_k3jBurJakvLEStwJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "195135314034-ieltp0tq73aafj32igihclks6n6b9r83.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

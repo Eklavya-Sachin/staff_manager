@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
                 onPressed: () {
                   _navigateBottomNavbar(0);
                 },
-                iconSize: 30,
+                iconSize: 20,
                 iconColor: Colors.blue,
                 backgroundColor: Colors.pink.shade400,
                 icon: Icons.forum_outlined,
@@ -60,7 +60,7 @@ class _HomeState extends State<Home> {
                   _navigateBottomNavbar(1);
                 },
                 backgroundColor: Colors.blue,
-                iconSize: 30,
+                iconSize: 20,
                 iconColor: Colors.pink.shade400,
                 icon: Icons.person,
                 text: 'Staff Details',
