@@ -36,9 +36,13 @@ class ShowStaffs extends StatelessWidget {
                 horizontal: 30,
                 vertical: 15,
               ),
-              leading: CircularProfileImage(
-                imageUrl:
-                    'https://static.remove.bg/remove-bg-web/ea3c274e1b7f6fbbfe93fad8b2b13d7ef352f09c/assets/start-1abfb4fe2980eabfbbaaa4365a0692539f7cd2725f324f904565a9a744f8e214.jpg',
+              leading: SizedBox(
+                width: 60,
+                height: 60,
+                child: CircularProfileImage(
+                  imageUrl:
+                      'https://static.remove.bg/remove-bg-web/ea3c274e1b7f6fbbfe93fad8b2b13d7ef352f09c/assets/start-1abfb4fe2980eabfbbaaa4365a0692539f7cd2725f324f904565a9a744f8e214.jpg',
+                ),
               ),
               title: Text(
                 'Dnalf  fadlksdsaf sdfasdf adf asdf adfsdafads fasdfaf',
