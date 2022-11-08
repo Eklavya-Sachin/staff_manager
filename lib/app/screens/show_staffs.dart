@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:staff_manager/app/models/firestore_user_model.dart';
 import 'package:staff_manager/app/screens/staff_details.dart';
 import '../widgets/circular_profile_image.dart';
 
 class ShowStaffs extends StatelessWidget {
-  const ShowStaffs({super.key});
+  ShowStaffs({super.key});
+  final _staffCollection = FirebaseFirestore.instance.collection('staffs');
 
   @override
   Widget build(BuildContext context) {
@@ -21,35 +24,63 @@ class ShowStaffs extends StatelessWidget {
           ),
           backgroundColor: Colors.blue,
         ),
-        body: ListView.builder(
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return ListTile(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => StaffDetails(),
+        body: StreamBuilder(
+          
+          stream: _staffCollection.snapshots(),
+          builder: (
+            BuildContext context,
+            AsyncSnapshot<QuerySnapshot> snapshot,
+          ) {
+            if (snapshot.hasData) {
+              List<QueryDocumentSnapshot<Object?>> staffsList =
+                  snapshot.data?.docs ?? [];
+
+              return ListView.builder(
+                itemCount: staffsList.length,
+                itemBuilder: (context, index) {
+                  final staff = FirestoreUserModel.fromDocument(
+                    staffsList[index],
+                  );
+
+                  return ListTile(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => StaffDetails(
+                            staffDetails: staff,
+                          ),
+                        ),
+                      );
+                    },
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 15,
+                    ),
+                    leading: SizedBox(
+                      width: 60,
+                      height: 60,
+                      child: CircularProfileImage(imageUrl: staff.profilePic),
+                    ),
+                    title: Text(
+                      staff.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  );
+                },
+              );
+            } else {
+              return const Center(
+                child: Text(
+                  'No Staff is Available!',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
                   ),
-                );
-              },
-              contentPadding: const EdgeInsets.symmetric(
-                horizontal: 30,
-                vertical: 15,
-              ),
-              leading: SizedBox(
-                width: 60,
-                height: 60,
-                child: CircularProfileImage(
-                  imageUrl:
-                      'https://static.remove.bg/remove-bg-web/ea3c274e1b7f6fbbfe93fad8b2b13d7ef352f09c/assets/start-1abfb4fe2980eabfbbaaa4365a0692539f7cd2725f324f904565a9a744f8e214.jpg',
                 ),
-              ),
-              title: Text(
-                'Dnalf  fadlksdsaf sdfasdf adf asdf adfsdafads fasdfaf',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            );
+              );
+            }
           },
         ),
       ),

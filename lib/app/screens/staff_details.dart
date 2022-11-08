@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:staff_manager/app/models/firestore_user_model.dart';
 import 'package:staff_manager/app/widgets/circular_profile_image.dart';
 
 class StaffDetails extends StatelessWidget {
-  const StaffDetails({super.key});
+  const StaffDetails({
+    super.key,
+    required this.staffDetails,
+  });
+
+  final FirestoreUserModel staffDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +23,16 @@ class StaffDetails extends StatelessWidget {
         ),
         body: Center(
           child: Column(
-            children: const [
+            children: [
               SizedBox(
                 height: 50,
               ),
-              CircularProfileImage(
-                imageUrl: '',
-                imageSize: 150,
+              SizedBox(
+                height: 160,
+                child: CircularProfileImage(
+                  imageUrl: staffDetails.profilePic,
+                  imageSize: 150,
+                ),
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -31,7 +40,7 @@ class StaffDetails extends StatelessWidget {
                   vertical: 20,
                 ),
                 child: Text(
-                  'Sanoj Raja',
+                  staffDetails.name,
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -43,12 +52,12 @@ class StaffDetails extends StatelessWidget {
                 ),
               ),
               Text(
-                'Age: 16',
+                'Age: ${staffDetails.age}',
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.w300),
               ),
               SizedBox(height: 20),
               Text(
-                'Mobile: 9549559453',
+                'Mobile: ${staffDetails.phoneNumber}',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w300,
@@ -61,7 +70,7 @@ class StaffDetails extends StatelessWidget {
                   vertical: 20,
                 ),
                 child: Text(
-                  'Department: IT',
+                  'Department: ${staffDetails.department}',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w300,
