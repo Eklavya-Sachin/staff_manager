@@ -31,9 +31,9 @@ class StaffDetails extends StatelessWidget {
                   vertical: 20,
                 ),
                 child: Text(
-                  'Sanoj Rajfasdfa sdfasdfasdf asdf adsf sda',
+                  'Sanoj Raja',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.blue,
                   ),
@@ -44,12 +44,16 @@ class StaffDetails extends StatelessWidget {
               ),
               Text(
                 'Age: 16',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w300),
               ),
               SizedBox(height: 20),
               Text(
                 'Mobile: 9549559453',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w300,
+                ),
+                textAlign: TextAlign.center,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
@@ -59,7 +63,7 @@ class StaffDetails extends StatelessWidget {
                 child: Text(
                   'Department: IT',
                   style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 28,
                     fontWeight: FontWeight.w300,
                   ),
                   overflow: TextOverflow.ellipsis,
