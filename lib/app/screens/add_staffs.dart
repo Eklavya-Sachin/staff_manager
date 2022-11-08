@@ -1,5 +1,8 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:staff_manager/app/models/firestore_user_model.dart';
+import 'package:staff_manager/app/utils/firebase_store.dart';
 import '../widgets/gradient_button.dart';
 import '../widgets/custom_text_field.dart';
 import 'package:image_picker/image_picker.dart';
@@ -12,6 +15,8 @@ class AddStaffs extends StatefulWidget {
 }
 
 class _AddStaffsState extends State<AddStaffs> {
+  final _staffCollection = FirebaseFirestore.instance.collection('staffs');
+
   final _nameController = TextEditingController();
   final _ageController = TextEditingController();
   final _phoneNumberController = TextEditingController();
@@ -43,7 +48,7 @@ class _AddStaffsState extends State<AddStaffs> {
     );
   }
 
-  void onSubmit() {
+  Future<void> onSubmit() async {
     if (_formKey.currentState!.validate()) {
       if (_staffDepartment == null) {
         var snackBar = const SnackBar(
@@ -60,7 +65,24 @@ class _AddStaffsState extends State<AddStaffs> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         return;
       } else {
-        /// TODO: Need to save data on firebase.
+        final staffImageUrl =
+            await Storage().uploadImageAndGetDownloadUrl(_selectedImage!);
+
+        await _staffCollection.add(
+          FirestoreUserModel(
+            name: _nameController.text.trim(),
+            age: _ageController.text.trim(),
+            phoneNumber: _phoneNumberController.text.trim(),
+            department: _staffDepartment!,
+            profilePic: staffImageUrl ?? '',
+          ).toJson(),
+        );
+        var snackBar = const SnackBar(
+          content: Text('Staff details uploaded successfully'),
+          padding: EdgeInsets.all(20),
+        );
+        // ignore: use_build_context_synchronously
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
     }
   }
@@ -226,7 +248,6 @@ class _AddStaffsState extends State<AddStaffs> {
                       child: DropdownButton(
                         hint: const Text('Select Department'),
                         focusColor: Colors.blue,
-                        
                         enableFeedback: true,
                         icon: const Icon(Icons.arrow_downward),
                         iconSize: 25,
