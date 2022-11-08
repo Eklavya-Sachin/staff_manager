@@ -1,3 +1,5 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+
 import 'app/screens/home.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +18,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Staff Manager',
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: const Home(),
+      builder: EasyLoading.init(),
     );
   }
 }

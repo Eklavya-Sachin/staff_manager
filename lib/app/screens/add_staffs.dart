@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:staff_manager/app/models/firestore_user_model.dart';
 import 'package:staff_manager/app/utils/firebase_store.dart';
 import '../widgets/gradient_button.dart';
@@ -65,6 +66,7 @@ class _AddStaffsState extends State<AddStaffs> {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
         return;
       } else {
+        EasyLoading.show();
         final staffImageUrl =
             await Storage().uploadImageAndGetDownloadUrl(_selectedImage!);
 
@@ -77,12 +79,22 @@ class _AddStaffsState extends State<AddStaffs> {
             profilePic: staffImageUrl ?? '',
           ).toJson(),
         );
-        var snackBar = const SnackBar(
-          content: Text('Staff details uploaded successfully'),
-          padding: EdgeInsets.all(20),
+        EasyLoading.dismiss();
+        EasyLoading.showToast(
+          'Staff details uploaded successfully.',
+          toastPosition: EasyLoadingToastPosition.bottom,
         );
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+        /// Clear all text fields & data.
+        setState(
+          () {
+            _nameController.clear();
+            _ageController.clear();
+            _phoneNumberController.clear();
+            _staffDepartment = null;
+            _selectedImage = null;
+          },
+        );
       }
     }
   }
