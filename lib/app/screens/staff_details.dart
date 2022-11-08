@@ -24,7 +24,7 @@ class StaffDetails extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               SizedBox(
@@ -35,13 +35,13 @@ class StaffDetails extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 40,
                   vertical: 20,
                 ),
                 child: Text(
                   staffDetails.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                     color: Colors.blue,
@@ -53,25 +53,28 @@ class StaffDetails extends StatelessWidget {
               ),
               Text(
                 'Age: ${staffDetails.age}',
-                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w300),
+                style: const TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w300,
+                ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 'Mobile: ${staffDetails.phoneNumber}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w300,
                 ),
                 textAlign: TextAlign.center,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 40,
                   vertical: 20,
                 ),
                 child: Text(
                   'Department: ${staffDetails.department}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.w300,
                   ),
